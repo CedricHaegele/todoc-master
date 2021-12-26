@@ -15,29 +15,50 @@ import com.cleanup.todoc.dao.TaskDao;
 import com.cleanup.todoc.model.Project;
 import com.cleanup.todoc.model.Task;
 
-@Database(entities = {Project.class, Task.class}, version = 1, exportSchema = false)
+@Database(entities = {Task.class, Project.class}, version = 1, exportSchema = false)
+
 public abstract class TodocDatabase extends RoomDatabase {
 
+
     // --- SINGLETON ---
+
     private static volatile TodocDatabase INSTANCE;
 
+
     // --- DAO ---
+
     public abstract TaskDao taskDao();
+
+
     public abstract ProjectDao projectDao();
 
+
     // --- INSTANCE ---
+
     public static TodocDatabase getInstance(Context context) {
+
         if (INSTANCE == null) {
+
             synchronized (TodocDatabase.class) {
+
                 if (INSTANCE == null) {
+
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            TodocDatabase.class, "Todoc.db")
+
+                            TodocDatabase.class, "MyDatabase.db")
+
                             .addCallback(prepopulateDatabase())
+
                             .build();
+
                 }
+
             }
+
         }
+
         return INSTANCE;
+
     }
 
     private static Callback prepopulateDatabase(){
@@ -47,24 +68,21 @@ public abstract class TodocDatabase extends RoomDatabase {
             public void onCreate(@NonNull SupportSQLiteDatabase db) {
                 super.onCreate(db);
 
-                ContentValues contentValues = new ContentValues();
 
-                contentValues.put("id", 1L);
-                contentValues.put("name", "Projet Tartampion");
-                contentValues.put("color", 0xFFEADAD1);
-                db.insert("Project", OnConflictStrategy.REPLACE, contentValues);
 
-                contentValues.put("id", 2L);
-                contentValues.put("name", "Projet Lucidia");
-                contentValues.put("color", 0xFFB4CDBA);
-                db.insert("Project", OnConflictStrategy.REPLACE, contentValues);
+                Project[] allProjects = Project.getAllProjects();
 
-                contentValues.put("id", 3L);
-                contentValues.put("name", "Projet Circus");
-                contentValues.put("color", 0xFFA3CED2);
-                db.insert("Project", OnConflictStrategy.REPLACE, contentValues);
+                for(Project project : allProjects){
 
-            }
+                    ContentValues contentValues = new ContentValues();
+                    contentValues.put("id", project.getId());
+                    contentValues.put("name", project.getName());
+                    contentValues.put("color", project.getColor());
+                    db.insert("project", OnConflictStrategy.REPLACE, contentValues);
+
+                                    }
+
+                          }
         };
     }
 }

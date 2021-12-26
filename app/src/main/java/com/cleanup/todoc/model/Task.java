@@ -9,38 +9,16 @@ import androidx.room.PrimaryKey;
 
 import java.util.Comparator;
 
-/**
- * <p>Model for the tasks of the application.</p>
- *
- * @author Gaëtan HERFRAY
- */
+
 @Entity(foreignKeys = @ForeignKey(entity = Project.class,
         parentColumns = "id",
-        childColumns = "projectId"))
-
+        childColumns = "projectId",
+        onDelete = ForeignKey.CASCADE))
 public class Task {
-    /**
-     * The unique identifier of the task
-     */
     @PrimaryKey(autoGenerate = true)
     private long id;
-
-    /**
-     * The unique identifier of the project associated to the task
-     */
     private long projectId;
-
-    /**
-     * The name of the task
-     */
-    // Suppress warning because setName is called in constructor
-    @SuppressWarnings("NullableProblems")
-    @NonNull
     private String name;
-
-    /**
-     * The timestamp when the task has been created
-     */
     private long creationTimestamp;
 
     public long getCreationTimestamp() {

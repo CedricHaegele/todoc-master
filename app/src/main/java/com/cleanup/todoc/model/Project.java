@@ -1,34 +1,20 @@
 package com.cleanup.todoc.model;
 
-import androidx.annotation.ColorInt;
+    import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-/**
- * <p>Models for project in which tasks are included.</p>
- *
- * @author Gaëtan HERFRAY
- */
-@Entity
-public class Project {
+
+    @Entity(tableName = "project")
+    public class Project {
     /**
      * The unique identifier of the project
      */
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     private final long id;
-
-    /**
-     * The name of the project
-     */
-    @NonNull
     private final String name;
-
-    /**
-     * The hex (ARGB) code of the color associated to the project
-     */
-    @ColorInt
     private final int color;
 
     /**
