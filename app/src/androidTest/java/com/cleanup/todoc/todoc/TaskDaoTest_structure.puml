@@ -1,0 +1,195 @@
+@startuml
+
+/' diagram meta data start
+config=StructureConfiguration;
+{
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": ""
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": true,
+    "cutInterfaceStructures": true,
+    "cutDataStructures": true,
+    "cutGetterAndSetter": true,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 3,
+    "backwardDepth": 3,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false // root node is included
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showClassGenericTypes": true,
+    "showMethods": true,
+    "showMethodParameterNames": true,
+    "showMethodParameterTypes": true,
+    "showMethodReturnType": true,
+    "showPackageLevels": 2,
+    "showDetailedClassStructure": true
+  },
+  "rootClass": "com.cleanup.todoc.todoc.TaskDaoTest"
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="TB"
+    splines=polyline
+    
+
+'nodes 
+subgraph cluster_856774308 { 
+   	label=cleanup
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   subgraph cluster_1925994771 { 
+   	label=todoc
+	labeljust=l
+	fillcolor="#d8d8d8"
+	style=filled
+   
+   ProjectDao_Impl1177495818[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)ProjectDao_Impl</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   __db: RoomDatabase [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   __insertionAdapterOfProject: EntityInsertionAdapter&lt;Project&gt; [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ createProject(project: Project)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+TaskDaoTest2012268629[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)TaskDaoTest</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   database: TodocDatabase [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   instantTaskExecutorRule: InstantTaskExecutorRule [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ closeDb()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getTasksWhenNoTaskInserted()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ initDb()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ insertAndDeleteTask()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ insertAndGetProject()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ insertAndGetTasks()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ insertNewTask()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+TaskDao_Impl1177495818[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)TaskDao_Impl</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   __db: RoomDatabase [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   __deletionAdapterOfTask: EntityDeletionOrUpdateAdapter&lt;Task&gt; [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   __insertionAdapterOfTask: EntityInsertionAdapter&lt;Task&gt; [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   __updateAdapterOfTask: EntityDeletionOrUpdateAdapter&lt;Task&gt; [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ deleteTask(task: Task)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getTasksWithCursor(projectId: long): Cursor</TD></TR>
+<TR><TD ALIGN="LEFT" >+ insertTask(task: Task): long</TD></TR>
+<TR><TD ALIGN="LEFT" >+ updateTask(task: Task): int</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+TodocDatabase1426069251[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)TodocDatabase</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ getInstance(context: Context): TodocDatabase</TD></TR>
+<TR><TD ALIGN="LEFT" >- prepopulateDatabase(): Callback</TD></TR>
+<TR><TD ALIGN="LEFT" >+ projectDao(): ProjectDao</TD></TR>
+<TR><TD ALIGN="LEFT" >+ taskDao(): TaskDao</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+TodocDatabase_Impl1426069251[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)TodocDatabase_Impl</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   _projectDao: ProjectDao [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   _taskDao: TaskDao [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ clearAllTables()</TD></TR>
+<TR><TD ALIGN="LEFT" ># createInvalidationTracker(): InvalidationTracker</TD></TR>
+<TR><TD ALIGN="LEFT" ># createOpenHelper(configuration: DatabaseConfiguration): SupportSQLiteOpenHelper</TD></TR>
+<TR><TD ALIGN="LEFT" >+ projectDao(): ProjectDao</TD></TR>
+<TR><TD ALIGN="LEFT" >+ taskDao(): TaskDao</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+} 
+
+'edges    
+TaskDaoTest2012268629 -> TodocDatabase1426069251[label="database
+[0..1]"];
+TodocDatabase1426069251 -> TodocDatabase_Impl1426069251[arrowhead=none, arrowtail=empty, dir=both];
+TodocDatabase_Impl1426069251 -> ProjectDao_Impl1177495818[arrowhead=none, arrowtail=empty, dir=both];
+TodocDatabase_Impl1426069251 -> TaskDao_Impl1177495818[arrowhead=none, arrowtail=empty, dir=both];
+    
+}
+@enduml

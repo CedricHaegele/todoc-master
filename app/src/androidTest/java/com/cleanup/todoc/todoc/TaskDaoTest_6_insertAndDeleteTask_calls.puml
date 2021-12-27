@@ -1,0 +1,242 @@
+@startuml
+
+/' diagram meta data start
+config=CallConfiguration;
+{
+  "rootMethod": "com.cleanup.todoc.todoc.TaskDaoTest#insertAndDeleteTask()",
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": ""
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": true,
+    "cutInterfaceStructures": true,
+    "cutDataStructures": true,
+    "cutGetterAndSetter": true,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 3,
+    "backwardDepth": 3,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false // root node is included
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showMethodParametersTypes": false,
+    "showMethodParametersNames": false,
+    "showMethodReturnType": false,
+    "showPackageLevels": 2,
+    "showCallOrder": false,
+    "edgeMode": "MethodsOnly", // TypesOnly, MethodsOnly, TypesAndMethods, MethodsAndDirectTypeUsage
+    "showDetailedClassStructure": false
+  },
+  "rootClass": "com.cleanup.todoc.todoc.TaskDaoTest"
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="LR"
+    splines=polyline
+    
+
+'nodes 
+subgraph cluster_856774308 { 
+   	label=cleanup
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   subgraph cluster_1925994771 { 
+   	label=todoc
+	labeljust=l
+	fillcolor="#d8d8d8"
+	style=filled
+   
+   subgraph cluster_1106341386 { 
+   	label=TaskDao_Impl
+	labeljust=l
+	fillcolor=white
+	style=filled
+   
+   TaskDao_Impl1177495818XXXdeleteTask2599333[
+	label="+ deleteTask()"
+	style=filled
+	fillcolor=white
+	tooltip="TaskDao_Impl
+
+null"
+	fontcolor=darkgreen
+];
+
+TaskDao_Impl1177495818XXXinsertTask2599333[
+	label="+ insertTask()"
+	style=filled
+	fillcolor=white
+	tooltip="TaskDao_Impl
+
+null"
+	fontcolor=darkgreen
+];
+} 
+
+subgraph cluster_1314865664 { 
+   	label=LiveDataTestUtil
+	labeljust=l
+	fillcolor=white
+	style=filled
+   
+   LiveDataTestUtil2016251432XXXgetValue1923338512[
+	label="+ getValue()"
+	style=filled
+	fillcolor=white
+	tooltip="LiveDataTestUtil
+
+null"
+	fontcolor=darkgreen
+];
+} 
+
+subgraph cluster_1646619053 { 
+   	label=TodocDatabase
+	labeljust=l
+	fillcolor=white
+	style=filled
+   
+   TodocDatabase1426069251XXXprojectDao0[
+	label="+ projectDao()"
+	style=filled
+	fillcolor=white
+	tooltip="TodocDatabase
+
+null"
+	fontcolor=darkgreen
+];
+
+TodocDatabase1426069251XXXtaskDao0[
+	label="+ taskDao()"
+	style=filled
+	fillcolor=white
+	tooltip="TodocDatabase
+
+null"
+	fontcolor=darkgreen
+];
+} 
+
+subgraph cluster_2039993966 { 
+   	label=TodocDatabase_Impl
+	labeljust=l
+	fillcolor=white
+	style=filled
+   
+   TodocDatabase_Impl1426069251XXXprojectDao0[
+	label="+ projectDao()"
+	style=filled
+	fillcolor=white
+	tooltip="TodocDatabase_Impl
+
+null"
+	fontcolor=darkgreen
+];
+
+TodocDatabase_Impl1426069251XXXtaskDao0[
+	label="+ taskDao()"
+	style=filled
+	fillcolor=white
+	tooltip="TodocDatabase_Impl
+
+null"
+	fontcolor=darkgreen
+];
+} 
+
+subgraph cluster_706577862 { 
+   	label=TaskDaoTest
+	labeljust=l
+	fillcolor=white
+	style=filled
+   
+   TaskDaoTest2012268629XXXinsertAndDeleteTask0[
+	label="+ insertAndDeleteTask()"
+	style=filled
+	fillcolor=white
+	tooltip="TaskDaoTest
+
+null"
+	penwidth=4
+	fontcolor=darkgreen
+];
+} 
+
+subgraph cluster_88053758 { 
+   	label=ProjectDao_Impl
+	labeljust=l
+	fillcolor=white
+	style=filled
+   
+   ProjectDao_Impl1177495818XXXcreateProject1355342585[
+	label="+ createProject()"
+	style=filled
+	fillcolor=white
+	tooltip="ProjectDao_Impl
+
+null"
+	fontcolor=darkgreen
+];
+} 
+} 
+} 
+
+'edges    
+TaskDaoTest2012268629XXXinsertAndDeleteTask0 -> LiveDataTestUtil2016251432XXXgetValue1923338512;
+TaskDaoTest2012268629XXXinsertAndDeleteTask0 -> ProjectDao_Impl1177495818XXXcreateProject1355342585;
+TaskDaoTest2012268629XXXinsertAndDeleteTask0 -> TaskDao_Impl1177495818XXXdeleteTask2599333;
+TaskDaoTest2012268629XXXinsertAndDeleteTask0 -> TaskDao_Impl1177495818XXXinsertTask2599333;
+TaskDaoTest2012268629XXXinsertAndDeleteTask0 -> TodocDatabase1426069251XXXprojectDao0;
+TaskDaoTest2012268629XXXinsertAndDeleteTask0 -> TodocDatabase1426069251XXXtaskDao0;
+TodocDatabase1426069251XXXprojectDao0 -> TodocDatabase_Impl1426069251XXXprojectDao0;
+TodocDatabase1426069251XXXtaskDao0 -> TodocDatabase_Impl1426069251XXXtaskDao0;
+    
+}
+@enduml
