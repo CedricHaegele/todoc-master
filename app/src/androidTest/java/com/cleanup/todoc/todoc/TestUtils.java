@@ -1,5 +1,4 @@
-package com.cleanup.todoc;
-
+package com.cleanup.todoc.todoc;
 
 import android.view.View;
 
@@ -10,6 +9,7 @@ import androidx.test.espresso.UiController;
 import androidx.test.espresso.ViewAction;
 import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.espresso.util.HumanReadables;
+
 
 import org.hamcrest.Matcher;
 import org.hamcrest.Matchers;
@@ -23,7 +23,7 @@ public class TestUtils {
                                                                                              @IdRes
                                                                                                      int viewId,
                                                                                              ViewAction viewAction) {
-        return new ActionOnItemViewAtPositionViewAction(position, viewId, viewAction);
+        return new ActionOnItemViewAtPositionViewAction<>(position, viewId, viewAction);
     }
 
     public static RecyclerViewMatcher withRecyclerView(final int recyclerViewId) {
@@ -48,7 +48,7 @@ public class TestUtils {
             this.viewId = viewId;
         }
 
-        public Matcher<View> getConstraints() {
+        public Matcher getConstraints() {
             return Matchers.allOf(new Matcher[]{
                     ViewMatchers.isAssignableFrom(RecyclerView.class), ViewMatchers.isDisplayed()
             });

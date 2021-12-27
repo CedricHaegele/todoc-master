@@ -1,17 +1,20 @@
-package com.cleanup.todoc;
+package com.cleanup.todoc.todoc;
 
 import android.content.res.Resources;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
 
+import java.util.Objects;
+
 /**
  * Created by dannyroa on 5/10/15.
  *
- * @see https://github.com/dannyroa/espresso-samples/blob/master/RecyclerView/app/src/androidTest/java/com/dannyroa/espresso_samples/recyclerview/RecyclerViewMatcher.java
+ * @see //github.com/dannyroa/espresso-samples/blob/master/RecyclerView/app/src/androidTest/java/com/dannyroa/espresso_samples/recyclerview/RecyclerViewMatcher.java
  */
 public class RecyclerViewMatcher {
     private final int recyclerViewId;
@@ -23,6 +26,7 @@ public class RecyclerViewMatcher {
     public Matcher<View> atPosition(final int position) {
         return atPositionOnView(position, -1);
     }
+
 
     public Matcher<View> atPositionOnView(final int position, final int targetViewId) {
 
@@ -37,8 +41,7 @@ public class RecyclerViewMatcher {
                         idDescription = this.resources.getResourceName(recyclerViewId);
                     } catch (Resources.NotFoundException var4) {
                         idDescription = String.format("%s (resource name not found)",
-                                Integer.valueOf
-                                        (recyclerViewId));
+                                recyclerViewId);
                     }
                 }
 
@@ -53,7 +56,7 @@ public class RecyclerViewMatcher {
                     RecyclerView recyclerView =
                             view.getRootView().findViewById(recyclerViewId);
                     if (recyclerView != null && recyclerView.getId() == recyclerViewId) {
-                        childView = recyclerView.findViewHolderForAdapterPosition(position).itemView;
+                        childView = Objects.requireNonNull(recyclerView.findViewHolderForAdapterPosition(position)).itemView;
                     } else {
                         return false;
                     }

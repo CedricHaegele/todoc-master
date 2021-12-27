@@ -11,7 +11,7 @@ import android.view.View;
 import com.cleanup.todoc.model.Task;
 
 import org.hamcrest.Matcher;
-import org.hamcrest.Matchers;
+
 import org.junit.Test;
 
 import java.util.ArrayList;
