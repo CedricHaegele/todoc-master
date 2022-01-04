@@ -23,7 +23,6 @@ public interface TaskDao {
 
 
     @Query("SELECT * FROM Task ")
-
     LiveData<List<Task>> getTasks();
 
 
@@ -32,12 +31,10 @@ public interface TaskDao {
 
 
     @Insert
-
     long insertTask(Task task);
 
 
     @Update
-
     int updateTask(Task task);
 
 

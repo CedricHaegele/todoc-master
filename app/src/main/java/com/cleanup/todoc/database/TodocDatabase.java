@@ -19,69 +19,42 @@ import com.cleanup.todoc.model.Task;
 
 public abstract class TodocDatabase extends RoomDatabase {
 
-
     // --- SINGLETON ---
-
     private static volatile TodocDatabase INSTANCE;
 
-
     // --- DAO ---
-
     public abstract TaskDao taskDao();
-
-
     public abstract ProjectDao projectDao();
 
-
     // --- INSTANCE ---
-
     public static TodocDatabase getInstance(Context context) {
-
         if (INSTANCE == null) {
-
             synchronized (TodocDatabase.class) {
-
                 if (INSTANCE == null) {
-
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-
                             TodocDatabase.class, "MyDatabase.db")
-
                             .addCallback(prepopulateDatabase())
-
                             .build();
-
                 }
-
             }
-
         }
-
         return INSTANCE;
-
     }
 
     private static Callback prepopulateDatabase(){
         return new Callback() {
-
             @Override
             public void onCreate(@NonNull SupportSQLiteDatabase db) {
                 super.onCreate(db);
 
-
-
                 Project[] allProjects = Project.getAllProjects();
-
                 for(Project project : allProjects){
-
                     ContentValues contentValues = new ContentValues();
                     contentValues.put("id", project.getId());
                     contentValues.put("name", project.getName());
                     contentValues.put("color", project.getColor());
                     db.insert("project", OnConflictStrategy.REPLACE, contentValues);
-
                                     }
-
                           }
         };
     }

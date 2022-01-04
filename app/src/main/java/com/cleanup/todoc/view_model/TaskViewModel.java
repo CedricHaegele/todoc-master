@@ -18,79 +18,47 @@ import java.util.concurrent.Executor;
 
 public class TaskViewModel extends ViewModel {
 
-
     // REPOSITORIES
-
     private final TaskDataRepository taskDataSource;
-
     private final ProjectDataRepository projectDataSource;
-
     private final Executor executor;
 
-
     // DATA
-
     @Nullable
-
     private LiveData<List<Project>> currentProject;
 
-
     public TaskViewModel(TaskDataRepository taskDataSource, ProjectDataRepository projectDataSource, Executor executor) {
-
         this.taskDataSource = taskDataSource;
-
         this.projectDataSource = projectDataSource;
-
         this.executor = executor;
     }
 
     public void init() {
-
         if (this.currentProject != null) {
-
             return;
-
         }
-
         currentProject = projectDataSource.getAllProjects();
-
     }
 
-    // -------------
-    // FOR USER
-    // -------------
-
-
+    // FOR PROJECT
     public LiveData<List<Project>> getAllProject() { return this.currentProject;  }
 
-    // -------------
-    // FOR ITEM
-    // -------------
 
+    // FOR TASK
     public LiveData<List<Task>> getTasks() {
-
         return taskDataSource.getTasks();
-
     }
 
     public void createTask(Task task){
-
         executor.execute(() -> {
-
             taskDataSource.createTask(task);
-
         });
-
     }
-
     public void deleteTask(Task task) {
         executor.execute(() -> taskDataSource.deleteTask(task));
     }
-
-
     public void updateTask(Task task) {
         executor.execute(() -> taskDataSource.updateTask(task));
-
     }
 
 }

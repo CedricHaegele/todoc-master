@@ -147,7 +147,6 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
 
         //updateTasks();
         getTasks();
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -191,7 +190,6 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
                 );
 
                 addTask(task);
-
                 dialogInterface.dismiss();
             }
             // If name has been set, but project has not been set (this should never occur)
@@ -212,10 +210,8 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
         final AlertDialog dialog = getAddTaskDialog();
 
         dialog.show();
-
         dialogEditText = dialog.findViewById(R.id.txt_task_name);
         dialogSpinner = dialog.findViewById(R.id.project_spinner);
-
         populateDialogSpinner();
     }
 
@@ -323,6 +319,4 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
          */
         NONE
     }
-
-
 }
